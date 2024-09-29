@@ -178,6 +178,10 @@ Install below plugins
 
 Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
 
+<div align="center">
+  <img src="./public/assets/jdk.png" alt="Logo" width="100%" height="100%">
+</div>
+
 
 ### SonarQube
 
