@@ -25,13 +25,20 @@
 - Provision an EC2 instance on AWS with Ubuntu 22.04.
 - Connect to the instance using SSH.
 
-**Step 2: Clone the Code:**
+
+**Step 2: Allocate Elastic IP for the instance:**
+
+- EC2 > Network & Security > Elastic IPs > Allocate Elastic IP address > Allocate
+- Then rename it if you want. Then, click Associate Elastic IP address and select the instance.
+    
+
+**Step 3: Clone the Code:**
 
 - Update all the packages and then clone the code.
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https://github.com/N4si/DevSecOps-Project.git
+    git clone https://github.com/My-DevSecOps-Projects/Deploy-Netflix-Clone-on-Kubernetes.git
     ```
     
 
