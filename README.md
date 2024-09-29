@@ -178,7 +178,7 @@ Install below plugins
 
 ### **Configure Java and Nodejs in Global Tool Configuration**
 
-Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
+Go to Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
 
 <div align="center">
   <img src="./public/assets/jdk.png" alt="Logo" width="100%" height="100%">
@@ -325,11 +325,31 @@ Certainly, here are the instructions without step numbers:
   - Go to "Dashboard" → "Manage Jenkins" → "Manage Credentials."
   - Click on "System" and then "Global credentials (unrestricted)."
   - Click on "Add Credentials" on the left side.
-  - Choose "Secret text" as the kind of credentials.
+  - Choose "Username with password" as the kind of credentials.
   - Enter your DockerHub credentials (Username and Password) and give the credentials an ID (e.g., "docker").
   - Click "OK" to save your DockerHub credentials.
 
-Now, you have installed the Dependency-Check plugin, configured the tool, and added Docker-related plugins along with your DockerHub credentials in Jenkins. You can now proceed with configuring your Jenkins pipeline to include these tools and credentials in your CI/CD process.
+<div align="center">
+  <img src="./public/assets/docker-credits.png" alt="Logo" width="100%" height="100%">
+</div>
+
+Now, you have installed the Dependency-Check plugin, configured the tool, and added Docker-related plugins along with your DockerHub credentials in Jenkins.
+
+Go to Manage Jenkins → Tools → Dependency-Check installations
+
+<div align="center">
+  <img src="./public/assets/dp-check.png" alt="Logo" width="100%" height="100%">
+</div>
+
+Go to Manage Jenkins → Tools → Docker installations
+
+<div align="center">
+  <img src="./public/assets/docker.png" alt="Logo" width="100%" height="100%">
+</div>
+
+Before starting CI/CD pipeline make sure to stop the Netflix container and there is no container in the same name which has been written in the following pipeline code.
+
+You can now proceed with configuring your Jenkins pipeline to include these tools and credentials in your CI/CD process.
 
 ```groovy
 
@@ -389,20 +409,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build --build-arg TMDB_V3_API_KEY=<yourapikey> -t netflix ."
-                       sh "docker tag netflix nasi101/netflix:latest "
-                       sh "docker push nasi101/netflix:latest "
+                       sh "docker tag netflix sachinayeshmantha/netflix:latest "
+                       sh "docker push sachinayeshmantha/netflix:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image nasi101/netflix:latest > trivyimage.txt" 
+                sh "trivy image sachinayeshmantha/netflix:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix -p 8081:80 nasi101/netflix:latest'
+                sh 'docker run -d --name netflix -p 8081:80 sachinayeshmantha/netflix:latest'
             }
         }
     }
