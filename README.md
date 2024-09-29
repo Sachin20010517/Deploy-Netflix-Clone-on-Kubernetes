@@ -86,9 +86,12 @@ docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
 **Phase 2: Security**
 
 1. **Install SonarQube and Trivy:**
-    - Install SonarQube and Trivy on the EC2 instance to scan for vulnerabilities.
+
+   ***SonarQube***
+      - SonarQube is a code quality and security analysis tool that is widely used to ensure that code adheres to coding standards, is free from bugs, and is secure. It scans the source code for potential vulnerabilities, code smells (maintainability issues), and other quality-related metrics.
         
-        sonarqube
+        To install SonarQube: 
+        
         ```
         docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
         ```
@@ -98,7 +101,13 @@ docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
         
         publicIP:9000 (by default username & password is admin)
         
+     ***Trivy***
+   
+     - Trivy is a security scanning tool that helps in identifying vulnerabilities and misconfigurations in containers, container images, and other cloud-native artifacts. It’s commonly used in CI/CD pipelines to ensure that the components of an application (e.g., containers, Kubernetes manifests, etc.) are free from known vulnerabilities before deployment.   
+
+      
         To install Trivy:
+   
         ```
         sudo apt-get install wget apt-transport-https gnupg lsb-release
         wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
@@ -113,7 +122,7 @@ docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
         ```
         
         
-2. **Integrate SonarQube and Configure:**
+3. **Integrate SonarQube and Configure:**
     - Integrate SonarQube with your CI/CD pipeline.
     - Configure SonarQube to analyze code for quality and security issues.
 
