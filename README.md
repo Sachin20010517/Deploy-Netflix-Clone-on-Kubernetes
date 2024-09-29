@@ -120,6 +120,10 @@ docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
         ```
         trivy image <imageid>
         ```
+       to scan current file system using trivy
+        ```
+        trivy fs .
+        ```
         
         
 3. **Integrate SonarQube and Configure:**
@@ -304,7 +308,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/My-DevSecOps-Projects/Deploy-Netflix-Clone-on-Kubernetes.git'
             }
         }
         stage("Sonarqube Analysis "){
