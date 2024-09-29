@@ -172,7 +172,9 @@ Install below plugins
 
 3 NodeJs Plugin (Install Without restart)
 
-4 Email Extension Plugin
+4 Pipeline: Stage View
+
+5 Email Extension Plugin
 
 ### **Configure Java and Nodejs in Global Tool Configuration**
 
@@ -217,7 +219,25 @@ Goto Jenkins Dashboard → Manage Jenkins → Tools → Add SonarQube Scanner. I
   <img src="./public/assets/SonnarQubeScanner.png" alt="Logo" width="100%" height="100%">
 </div>
 
-Create a Jenkins webhook
+Create a Project in the Sonarqube server for Sonarqube Analysis
+
+Goto SonarQube Dashboard → Project → Manually
+
+<div align="center">
+  <img src="./public/assets/Sonarqube-1.png" alt="Logo" width="100%" height="100%">
+</div>
+- Then select "Locally"
+<div align="center">
+  <img src="./public/assets/SonarQube-2.png" alt="Logo" width="100%" height="100%">
+</div> 
+- Then click generate
+<div align="center">
+  <img src="./public/assets/Sonarqube-3.png" alt="Logo" width="100%" height="100%">
+</div>
+- Thin click continue
+<div align="center">
+  <img src="./public/assets/sonarqube-4.png" alt="Logo" width="100%" height="100%">
+</div>
 
 1. **Configure CI/CD Pipeline in Jenkins:**
 - Create a CI/CD pipeline in Jenkins to automate your application deployment.
@@ -240,7 +260,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/My-DevSecOps-Projects/Deploy-Netflix-Clone-on-Kubernetes.git'
             }
         }
         stage("Sonarqube Analysis") {
