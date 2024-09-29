@@ -192,6 +192,9 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 Create the token
 
 Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
+<div align="center">
+  <img src="./public/assets/Sonar-token.png" alt="Logo" width="100%" height="100%">
+</div>
 
 After adding sonar token
 
@@ -199,9 +202,20 @@ Click on Apply and Save
 
 **The Configure System option** is used in Jenkins to configure different server
 
+Goto Jenkins Dashboard → Manage Jenkins → Systems → Add SonarQube server. It should look like this
+
+<div align="center">
+  <img src="./public/assets/sonarqubeServer.png" alt="Logo" width="100%" height="100%">
+</div>
+
 **Global Tool Configuration** is used to configure different tools that we install using Plugins
 
 We will install a sonar scanner in the tools.
+
+Goto Jenkins Dashboard → Manage Jenkins → Tools → Add SonarQube Scanner. It should look like this
+<div align="center">
+  <img src="./public/assets/SonnarQubeScanner.png" alt="Logo" width="100%" height="100%">
+</div>
 
 Create a Jenkins webhook
 
