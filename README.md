@@ -603,7 +603,14 @@ At the end of the jenkins pipeline, netflix container will have been created and
 
    **Prometheus Configuration:**
 
-   To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the `prometheus.yml` file. Here is an example `prometheus.yml` configuration for your setup:
+   To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the `prometheus.yml` file. `prometheus.yml` is the file which you need to edit whenever you want to monitor something. Here is an example `prometheus.yml` configuration for your setup:
+  
+   Let's add node_exporter and  Jenkins in the  `prometheus.yml`
+     ```bash
+    cd /etc/prometheus/
+    ls
+    sudo nano prometheus.yml
+   ```
 
    ```yaml
    global:
@@ -612,7 +619,7 @@ At the end of the jenkins pipeline, netflix container will have been created and
    scrape_configs:
      - job_name: 'node_exporter'
        static_configs:
-         - targets: ['localhost:9100']
+         - targets: ['localhost:9100']  
 
      - job_name: 'jenkins'
        metrics_path: '/prometheus'
