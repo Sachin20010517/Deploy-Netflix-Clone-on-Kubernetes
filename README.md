@@ -605,10 +605,19 @@ At the end of the jenkins pipeline, netflix container will have been created and
 
    To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the `prometheus.yml` file. `prometheus.yml` is the file which you need to edit whenever you want to monitor something. Here is an example `prometheus.yml` configuration for your setup:
   
-   Let's add node_exporter and  Jenkins in the  `prometheus.yml`
      ```bash
     cd /etc/prometheus/
     ls
+    cat prometheus.yml
+  
+    ```
+    <div align="center">
+        <img src="./public/assets/prometheus-yml.png" alt="Logo" width="100%" height="100%">
+    </div>
+
+    Let's add jobs for node_exporter and  Jenkins in the  `prometheus.yml`
+
+    ```
     sudo nano prometheus.yml
    ```
 
@@ -641,9 +650,19 @@ At the end of the jenkins pipeline, netflix container will have been created and
    curl -X POST http://localhost:9090/-/reload
    ```
 
+   After reloading, you should be able to see new target is coming up in the prometheus
+   <div align="center">
+        <img src="./public/assets/prome-1.png" alt="Logo" width="100%" height="100%">
+    </div>
+    If it is down like this, you should open Port 9100 in thesecurity groups of the instance. Then prometheus will be able to lokk at the metrics of the node_exporter
+
    You can access Prometheus targets at:
 
    `http://<your-prometheus-ip>:9090/targets`
+
+    <div align="center">
+        <img src="./public/assets/promo-2.png" alt="Logo" width="100%" height="100%">
+    </div>
 
 
 ####Grafana
