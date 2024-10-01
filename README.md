@@ -434,9 +434,11 @@ If you get docker login failed errorr
 sudo su
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
+groups jenkins
 
 
 ```
+At the end of the jenkins pipeline, netflix container will have been created and netflix image will have been pushed by jenkins
 
 **Phase 4: Monitoring**
 
