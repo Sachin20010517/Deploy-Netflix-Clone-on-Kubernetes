@@ -442,6 +442,8 @@ At the end of the jenkins pipeline, netflix container will have been created and
 
 **Phase 4: Monitoring**
 
+For monitoring, we are gonna use a seperate EC2 instance. Because it will take more capacity. First create ec2 instance, then add a Elastic Ip address for it
+
 1. **Install Prometheus and Grafana:**
 
    Set up Prometheus and Grafana to monitor your application.
@@ -664,6 +666,11 @@ At the end of the jenkins pipeline, netflix container will have been created and
         <img src="./public/assets/promo-2.png" alt="Logo" width="100%" height="100%">
     </div>
 
+    You can get metrics like this:
+
+    <div align="center">
+        <img src="./public/assets/metrics.png" alt="Logo" width="100%" height="100%">
+    </div>
 
 ####Grafana
 
@@ -773,12 +780,49 @@ To make it easier to view metrics, you can import a pre-configured dashboard. Fo
 
 You should now have a Grafana dashboard set up to visualize metrics from Prometheus.
 
+<div align="center">
+        <img src="./public/assets/grafana-2.png" alt="Logo" width="100%" height="100%">
+    </div>
+
 Grafana is a powerful tool for creating visualizations and dashboards, and you can further customize it to suit your specific monitoring needs.
 
 That's it! You've successfully installed and set up Grafana to work with Prometheus for monitoring and visualization.
 
 2. **Configure Prometheus Plugin Integration:**
     - Integrate Jenkins with Prometheus to monitor the CI/CD pipeline.
+
+    For this you should install "Prometheus metrics" plugin in the jenkins server, after then we are gonna restart the jenkins server.
+
+    Then setup system option of the jenkins server for the prometheus server. For that,
+    - Go to Manage Jenkins → System → Prometheus
+
+    <div align="center">
+        <img src="./public/assets/promt.png" alt="Logo" width="100%" height="100%">
+    </div>
+
+    - You should add jobs for Jenkins in the  `prometheus.yml`, if you haven't added it while adding node_exporter.
+
+    <div align="center">
+        <img src="./public/assets/jenkin-5.png" alt="Logo" width="100%" height="100%">
+    </div>
+
+    Reload the Prometheus configuration without restarting:
+
+   ```bash
+   curl -X POST http://localhost:9090/-/reload
+   ```
+
+   After reloading, you should be able to see new target is coming up in the prometheus.
+
+   <div align="center">
+        <img src="./public/assets/prometheus-6.png" alt="Logo" width="100%" height="100%">
+    </div>
+
+    Now import a Dashboard for jenkins. Enter the dashboard code you want to import (e.g., code 9964).
+
+    <div align="center">
+        <img src="./public/assets/jenkins-dash.png" alt="Logo" width="100%" height="100%">
+    </div>
 
 
 **Phase 5: Notification**
